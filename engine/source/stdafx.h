@@ -13,4 +13,6 @@
 #include <string>
 #include <vector>
 
+#include "engine/core/common.h"
+
 #endif // !__BT_ENGINE_STDAFX_H__
