@@ -1,11 +1,9 @@
 #include "core/game.h"
 
-#include <iostream>
+#include <sstream>
 
 namespace bt
 {
-	using namespace engine;
-
 	Game::Game()
 		: Application("Burger Time")
 	{
@@ -18,6 +16,16 @@ namespace bt
 	}
 
 	void Game::FixedUpdate()
+	{
+
+	}
+
+	void Game::Render() const
+	{
+
+	}
+
+	void Game::Process(Event&)
 	{
 
 	}

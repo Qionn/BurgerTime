@@ -14,9 +14,9 @@ namespace bt
 	private:
 		void Update() override;
 		void FixedUpdate() override;
+		void Render() const override;
+		void Process(Event& e) override;
 	};
 }
-
-BT_ENGINE_APP(Game)
 
 #endif // !__BT_GAME_H__

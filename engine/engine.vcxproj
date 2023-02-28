@@ -101,7 +101,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)source\;$(ProjectDir)include\;$(VULKAN_SDK)\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -126,7 +126,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
@@ -151,7 +151,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)source\;$(ProjectDir)include\;$(VULKAN_SDK)\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -176,7 +176,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
@@ -194,15 +194,22 @@
   <ItemGroup>
     <ClInclude Include="include\engine\core\application.h" />
     <ClInclude Include="include\engine\core\common.h" />
-    <ClInclude Include="include\engine\core\entrypoint.h" />
+    <ClInclude Include="include\engine\core\event.h" />
+    <ClInclude Include="include\engine\core\window.h" />
     <ClInclude Include="include\engine\engine.h" />
-    <ClInclude Include="include\engine\global\time.h" />
+    <ClInclude Include="include\engine\core\time.h" />
+    <ClInclude Include="include\engine\events\keyboard_events.h" />
+    <ClInclude Include="include\engine\events\mouse_events.h" />
+    <ClInclude Include="include\engine\events\window_events.h" />
+    <ClInclude Include="include\engine\utils\messenger.h" />
     <ClInclude Include="include\engine\utils\timer.h" />
+    <ClInclude Include="include\engine\utils\family.h" />
     <ClInclude Include="source\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\core\application.cpp" />
-    <ClCompile Include="source\core\entrypoint.cpp" />
+    <ClCompile Include="source\core\event.cpp" />
+    <ClCompile Include="source\core\window.cpp" />
     <ClCompile Include="source\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
