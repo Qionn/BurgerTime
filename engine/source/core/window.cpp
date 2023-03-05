@@ -1,15 +1,15 @@
 #include "stdafx.h"
 
 #include "engine/core/window.h"
-#include "engine/events/keyboard_events.h"
-#include "engine/events/mouse_events.h"
-#include "engine/events/window_events.h"
+#include "engine/core/events/keyboard_events.h"
+#include "engine/core/events/mouse_events.h"
+#include "engine/core/events/window_events.h"
 
 namespace bt::engine
 {
 	static size_t g_InstanceCount		= 0;
-	static const DWORD g_Style			= WS_OVERLAPPEDWINDOW;
-	static const DWORD g_ExStyle		= WS_EX_OVERLAPPEDWINDOW;
+	static const DWORD g_Style			= WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;
+	static const DWORD g_ExStyle		= 0;
 	static const TCHAR g_ClassName[]	= TEXT("EngineWindowClass");
 
 	Window::Window(const std::string_view& title, uint32_t width, uint32_t height)
@@ -26,18 +26,25 @@ namespace bt::engine
 
 		SetProcessDPIAware();
 
+		bool needGlew = false;
+
 		if (g_InstanceCount++ == 0)
 		{
 			WNDCLASSEX wc = {};
 
 			wc.cbSize			= sizeof(WNDCLASSEX);
-			wc.style			= CS_HREDRAW | CS_VREDRAW;
+			wc.style			= CS_OWNDC | CS_HREDRAW | CS_VREDRAW;
 			wc.lpfnWndProc		= &WindowProc;
 			wc.cbClsExtra		= sizeof(LONG_PTR);
 			wc.hInstance		= m_hInstance;
 			wc.lpszClassName	= g_ClassName;
 
-			RegisterClassEx(&wc);
+			if (!RegisterClassEx(&wc))
+			{
+				throw std::runtime_error("Failed to create window!");
+			}
+
+			needGlew = true;
 		}
 
 		RECT wr		= {};
@@ -50,11 +57,45 @@ namespace bt::engine
 			wr.right - wr.left, wr.bottom - wr.top, nullptr, nullptr, m_hInstance, this
 		);
 
+		if (m_Hwnd == nullptr)
+		{
+			throw std::runtime_error("Failed to create window!");
+		}
+
+		m_Hdc = GetDC(m_Hwnd);
+
+		PIXELFORMATDESCRIPTOR pixelFormatDesc	= {};
+		pixelFormatDesc.nSize					= sizeof(PIXELFORMATDESCRIPTOR);
+		pixelFormatDesc.nVersion				= 1;
+		pixelFormatDesc.dwFlags					= PFD_DRAW_TO_WINDOW | PFD_DOUBLEBUFFER | PFD_SUPPORT_OPENGL;
+		pixelFormatDesc.iPixelType				= PFD_TYPE_RGBA;
+		pixelFormatDesc.cColorBits				= 32;
+		pixelFormatDesc.cAlphaBits				= 8;
+		pixelFormatDesc.cDepthBits				= 24;
+
+		int pixelFormat = ChoosePixelFormat(m_Hdc, &pixelFormatDesc);
+		SetPixelFormat(m_Hdc, pixelFormat, &pixelFormatDesc);
+
+		m_Context = wglCreateContext(m_Hdc);
+		wglMakeCurrent(m_Hdc, m_Context);
+
+		if (needGlew && glewInit() != GLEW_OK)
+		{
+			throw std::runtime_error("Failed to initialize glew!");
+		}
+
+		wglMakeCurrent(m_Hdc, nullptr);
 		ShowWindow(m_Hwnd, SW_SHOW);
 	}
 
 	Window::~Window()
 	{
+		SetRecipient(nullptr);
+
+		wglMakeCurrent(m_Hdc, nullptr);
+		wglDeleteContext(m_Context);
+		
+		ReleaseDC(m_Hwnd, m_Hdc);
 		DestroyWindow(m_Hwnd);
 
 		if (--g_InstanceCount == 0)
@@ -71,6 +112,16 @@ namespace bt::engine
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
+	}
+
+	void Window::MakeContextCurrent() const
+	{
+		wglMakeCurrent(m_Hdc, m_Context);
+	}
+
+	void Window::SwapBuffers() const
+	{
+		wglSwapLayerBuffers(m_Hdc, WGL_SWAP_MAIN_PLANE);
 	}
 
 	LRESULT Window::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam)
@@ -99,6 +150,8 @@ namespace bt::engine
 			{
 				m_Width = LOWORD(lParam);
 				m_Height = HIWORD(lParam);
+
+				glViewport(0, 0, m_Width, m_Height);
 
 				EventWindowSize e(m_Width, m_Height);
 				Message(e);

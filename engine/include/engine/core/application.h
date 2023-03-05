@@ -6,6 +6,7 @@
 
 #include "engine/core/common.h"
 #include "engine/core/window.h"
+#include "engine/scene/scene.h"
 
 namespace bt::engine
 {
@@ -37,26 +38,9 @@ namespace bt::engine
 
 	protected:
 		/**
-		 * Updates the state of the application once every frame
+		 * Called when the application is ready to populate the scene.
 		 */
-		virtual void Update() = 0;
-
-		/**
-		 * Updates the state of the application once every fixed interval
-		 */
-		virtual void FixedUpdate() = 0;
-
-		/**
-		 * Renders the application on the screen once every frame.
-		 */
-		virtual void Render() const = 0;
-
-		/**
-		 * Processes an event received by the application.
-		 * 
-		 * @param e The event that was received
-		 */
-		virtual void Process(Event& e) = 0;
+		virtual void Load(Scene& scene) = 0;
 
 	private:
 		void HandleEvent(Event& e);
@@ -65,6 +49,7 @@ namespace bt::engine
 		bool m_IsRunning;
 
 		std::unique_ptr<Window> m_pWindow;
+		std::unique_ptr<Scene> m_pMainScene;
 	};
 }
 

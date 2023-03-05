@@ -10,4 +10,9 @@ namespace bt::engine
 	{
 
 	}
+
+	bool Event::IsHandled() const
+	{
+		return m_IsHandled;
+	}
 }

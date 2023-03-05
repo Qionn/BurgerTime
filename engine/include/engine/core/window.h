@@ -33,6 +33,16 @@ namespace bt::engine
 		 */
 		void PollEvents();
 
+		/**
+		 * Sets the current OpenGL context to draw to this window.
+		 */
+		void MakeContextCurrent() const;
+
+		/**
+		 * Presents the back buffer to the front.
+		 */
+		void SwapBuffers() const;
+
 	private:
 		LRESULT HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam);
 		static LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
@@ -40,7 +50,9 @@ namespace bt::engine
 		std::basic_string<TCHAR> m_Title;
 		uint32_t m_Width, m_Height;
 
+		HDC m_Hdc;
 		HWND m_Hwnd;
+		HGLRC m_Context;
 		HINSTANCE m_hInstance;
 	};
 }

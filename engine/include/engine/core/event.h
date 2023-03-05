@@ -39,6 +39,13 @@ namespace bt::engine
 			}
 		}
 
+		/**
+		 * Returns true if the event is handled, otherwise false.
+		 * 
+		 * @returns The event handled state
+		 */
+		bool IsHandled() const;
+
 	private:
 		uint32_t m_Id;
 		bool m_IsHandled;

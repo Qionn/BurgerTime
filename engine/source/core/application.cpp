@@ -2,7 +2,7 @@
 
 #include "engine/core/application.h"
 #include "engine/core/time.h"
-#include "engine/events/window_events.h"
+#include "engine/core/events/window_events.h"
 #include "engine/utils/timer.h"
 
 namespace bt::engine
@@ -13,10 +13,15 @@ namespace bt::engine
 	{
 		m_pWindow = std::make_unique<Window>(name, 640, 360);
 		m_pWindow->SetRecipient(std::bind(&Application::HandleEvent, this, std::placeholders::_1));
+		m_pWindow->MakeContextCurrent();
+
+		m_pMainScene = std::make_unique<Scene>();
 	}
 
 	void Application::Start()
 	{
+		Load(*m_pMainScene);
+
 		m_IsRunning = true;
 
 		Timer timer;
@@ -31,12 +36,14 @@ namespace bt::engine
 
 			while (lag >= Time::fixedDeltaTime)
 			{
-				FixedUpdate();
+				m_pMainScene->FixedUpdate();
 				lag -= Time::fixedDeltaTime;
 			}
 
-			Update();
-			Render();
+			m_pMainScene->Update();
+			m_pMainScene->Render();
+
+			m_pWindow->SwapBuffers();
 
 			Time::deltaTime = timer.ElapsedSeconds();
 		}
@@ -49,7 +56,7 @@ namespace bt::engine
 
 	void Application::HandleEvent(Event& e)
 	{
-		Process(e);
+		m_pMainScene->Process(e);
 
 		e.Handle<EventWindowClose>(
 			[this](const auto&) {

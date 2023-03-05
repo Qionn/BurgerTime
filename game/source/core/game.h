@@ -12,10 +12,7 @@ namespace bt
 		~Game() = default;
 
 	private:
-		void Update() override;
-		void FixedUpdate() override;
-		void Render() const override;
-		void Process(Event& e) override;
+		void Load(Scene& scene) override;
 	};
 }
 

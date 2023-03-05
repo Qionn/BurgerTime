@@ -7,11 +7,13 @@
 #include <windows.h>
 #include <windowsx.h>
 
-#include <vulkan/vulkan.h>
-#include <vulkan/vulkan_win32.h>
+#define GLEW_STATIC
+#include <GL/glew.h>
 
+#include <stdexcept>
 #include <string>
 #include <vector>
+#include <functional>
 
 #include "engine/core/common.h"
 

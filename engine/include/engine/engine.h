@@ -7,9 +7,16 @@
 #include "core/time.h"
 #include "core/window.h"
 
-#include "events/window_events.h"
-#include "events/keyboard_events.h"
-#include "events/mouse_events.h"
+#include "core/events/component_events.h"
+#include "core/events/window_events.h"
+#include "core/events/keyboard_events.h"
+#include "core/events/mouse_events.h"
+
+#include "scene/component.h"
+#include "scene/scene.h"
+#include "scene/game_object.h"
+
+#include "scene/components/transform_component.h"
 
 #include "utils/family.h"
 #include "utils/messenger.h"

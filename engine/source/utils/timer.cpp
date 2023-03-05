@@ -1,22 +1,23 @@
 #include "stdafx.h"
 
+#include "engine/core/time.h"
 #include "engine/utils/timer.h"
 
 namespace bt::engine
 {
 	Timer::Timer()
-		: m_StartPoint{ Clock::now() }
+		: m_StartTime{ Time::GetTime() }
 	{
 
 	}
 
 	void Timer::Reset()
 	{
-		m_StartPoint = Clock::now();
+		m_StartTime = Time::GetTime();
 	}
 
 	float Timer::ElapsedSeconds() const
 	{
-		return std::chrono::duration<float>(Clock::now() - m_StartPoint).count();
+		return (Time::GetTime() - m_StartTime);
 	}
 }
