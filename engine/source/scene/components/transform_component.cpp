@@ -32,6 +32,16 @@ namespace bt::engine
 		m_Scale = scale;
 	}
 
+	glm::mat4 TransformComponent::GetModelMatrix() const
+	{
+		glm::mat4 model(1.0f);
+
+		model = glm::translate(model, glm::vec3(m_Position, 0.0f));
+		model = glm::scale(model, glm::vec3(m_Scale, 1.0f));
+
+		return model;
+	}
+
 	void TransformComponent::Update()
 	{
 		// Empty

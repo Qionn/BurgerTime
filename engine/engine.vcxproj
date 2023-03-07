@@ -75,21 +75,29 @@
     <OutDir>$(SolutionDir)build\bin\$(Configuration)-$(PlatformShortName)\</OutDir>
     <IntDir>$(SolutionDir)build\int\$(ProjectName)\$(Configuration)-$(PlatformShortName)\</IntDir>
     <TargetName>Engine</TargetName>
+    <CustomBuildAfterTargets>
+    </CustomBuildAfterTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)build\bin\$(Configuration)-$(PlatformShortName)\</OutDir>
     <IntDir>$(SolutionDir)build\int\$(ProjectName)\$(Configuration)-$(PlatformShortName)\</IntDir>
     <TargetName>Engine</TargetName>
+    <CustomBuildAfterTargets>
+    </CustomBuildAfterTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)build\bin\$(Configuration)-$(PlatformShortName)\</OutDir>
     <IntDir>$(SolutionDir)build\int\$(ProjectName)\$(Configuration)-$(PlatformShortName)\</IntDir>
     <TargetName>Engine</TargetName>
+    <CustomBuildAfterTargets>
+    </CustomBuildAfterTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)build\bin\$(Configuration)-$(PlatformShortName)\</OutDir>
     <IntDir>$(SolutionDir)build\int\$(ProjectName)\$(Configuration)-$(PlatformShortName)\</IntDir>
     <TargetName>Engine</TargetName>
+    <CustomBuildAfterTargets>
+    </CustomBuildAfterTargets>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -112,6 +120,21 @@
       <AdditionalLibraryDirectories>$(SolutionDir)vendor\glew\lib\Win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>if exist "$(TargetDir)data" (
+    rd /s /q "$(TargetDir)data"
+)
+xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
+</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -140,6 +163,21 @@
       <AdditionalLibraryDirectories>$(SolutionDir)vendor\glew\lib\Win32\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>if exist "$(TargetDir)data" (
+    rd /s /q "$(TargetDir)data"
+)
+xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
+</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -162,6 +200,21 @@
       <AdditionalLibraryDirectories>$(SolutionDir)vendor\glew\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>if exist "$(TargetDir)data" (
+    rd /s /q "$(TargetDir)data"
+)
+xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
+</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -190,6 +243,21 @@
       <AdditionalLibraryDirectories>$(SolutionDir)vendor\glew\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>if exist "$(TargetDir)data" (
+    rd /s /q "$(TargetDir)data"
+)
+xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
+</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\engine\core\application.h" />
@@ -202,13 +270,19 @@
     <ClInclude Include="include\engine\core\events\keyboard_events.h" />
     <ClInclude Include="include\engine\core\events\mouse_events.h" />
     <ClInclude Include="include\engine\core\events\window_events.h" />
+    <ClInclude Include="include\engine\graphics\mesh.h" />
+    <ClInclude Include="include\engine\graphics\program.h" />
+    <ClInclude Include="include\engine\graphics\shader.h" />
+    <ClInclude Include="include\engine\graphics\vertex.h" />
     <ClInclude Include="include\engine\scene\component.h" />
+    <ClInclude Include="include\engine\scene\components\sprite_component.h" />
     <ClInclude Include="include\engine\scene\components\transform_component.h" />
     <ClInclude Include="include\engine\scene\game_object.h" />
     <ClInclude Include="include\engine\scene\scene.h" />
     <ClInclude Include="include\engine\utils\messenger.h" />
     <ClInclude Include="include\engine\utils\timer.h" />
     <ClInclude Include="include\engine\utils\family.h" />
+    <ClInclude Include="include\engine\utils\vault.h" />
     <ClInclude Include="source\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -216,7 +290,11 @@
     <ClCompile Include="source\core\event.cpp" />
     <ClCompile Include="source\core\time.cpp" />
     <ClCompile Include="source\core\window.cpp" />
+    <ClCompile Include="source\graphics\mesh.cpp" />
+    <ClCompile Include="source\graphics\program.cpp" />
+    <ClCompile Include="source\graphics\shader.cpp" />
     <ClCompile Include="source\scene\component.cpp" />
+    <ClCompile Include="source\scene\components\sprite_component.cpp" />
     <ClCompile Include="source\scene\components\transform_component.cpp" />
     <ClCompile Include="source\scene\game_object.cpp" />
     <ClCompile Include="source\scene\scene.cpp" />
@@ -227,6 +305,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="source\utils\timer.cpp" />
+    <ClCompile Include="source\utils\vault.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\shaders\sprite.fs.glsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="data\shaders\sprite.vs.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

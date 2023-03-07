@@ -12,7 +12,7 @@ namespace bt::engine
 	{
 	public:
 		EventMouseMove(uint32_t x, uint32_t y)
-			: __EventBaseHelper, x{ x }, y{ y } {}
+			: Event(BT_ENGINE_THIS_EVENT_ID), x{ x }, y{ y } {}
 
 		uint32_t x, y;
 	};
@@ -24,7 +24,7 @@ namespace bt::engine
 	{
 	public:
 		EventMouseScroll(uint32_t x, uint32_t y,  float delta)
-			: __EventBaseHelper, x{ x }, y{ y }, delta { delta } {}
+			: Event(BT_ENGINE_THIS_EVENT_ID), x{ x }, y{ y }, delta { delta } {}
 
 		uint32_t x, y;
 		float delta;
@@ -37,7 +37,7 @@ namespace bt::engine
 	{
 	public:
 		EventMouseButtonDown(uint32_t x, uint32_t y, uint8_t button)
-			: __EventBaseHelper, x{ x }, y{ y }, button{ button } {}
+			: Event(BT_ENGINE_THIS_EVENT_ID), x{ x }, y{ y }, button{ button } {}
 
 		uint32_t x, y;
 		uint8_t button;
@@ -50,7 +50,7 @@ namespace bt::engine
 	{
 	public:
 		EventMouseButtonUp(uint32_t x, uint32_t y, uint8_t button)
-			: __EventBaseHelper, x{ x }, y{ y }, button{ button } {}
+			: Event(BT_ENGINE_THIS_EVENT_ID), x{ x }, y{ y }, button{ button } {}
 
 		uint32_t x, y;
 		uint8_t button;

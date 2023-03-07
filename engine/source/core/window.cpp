@@ -122,6 +122,8 @@ namespace bt::engine
 	void Window::SwapBuffers() const
 	{
 		wglSwapLayerBuffers(m_Hdc, WGL_SWAP_MAIN_PLANE);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
 	LRESULT Window::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam)

@@ -12,7 +12,7 @@ namespace bt::engine
 	{
 	public:
 		EventKeyboardKeyDown(uint8_t keycode, uint8_t scancode, bool repeated)
-			: __EventBaseHelper, keycode{ keycode }, scancode{ scancode }, repeated{ repeated } {}
+			: Event(BT_ENGINE_THIS_EVENT_ID), keycode{ keycode }, scancode{ scancode }, repeated{ repeated } {}
 
 		uint8_t keycode, scancode;
 		bool repeated;
@@ -25,7 +25,7 @@ namespace bt::engine
 	{
 	public:
 		EventKeyboardKeyUp(uint8_t keycode, uint8_t scancode)
-			: __EventBaseHelper, keycode{ keycode }, scancode{ scancode } {}
+			: Event(BT_ENGINE_THIS_EVENT_ID), keycode{ keycode }, scancode{ scancode } {}
 
 		uint8_t keycode, scancode;
 	};
@@ -37,7 +37,7 @@ namespace bt::engine
 	{
 	public:
 		EventKeyboardChar(uint32_t codepoint, bool repeated)
-			: __EventBaseHelper, codepoint{ codepoint }, repeated{ repeated } {}
+			: Event(BT_ENGINE_THIS_EVENT_ID), codepoint{ codepoint }, repeated{ repeated } {}
 
 		uint32_t codepoint;
 		bool repeated;

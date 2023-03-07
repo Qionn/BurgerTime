@@ -5,10 +5,15 @@
 
 #pragma warning(disable:4201)
 #include <glm/vec2.hpp>
+#include <glm/mat4x4.hpp>
+#include <glm/ext.hpp>
 #pragma warning(default:4201)
 
 namespace bt::engine
 {
+	// TransformComponent --------------------------------------------------------
+	// ===========================================================================
+
 	class TransformComponent final : public Component
 	{
 	public:
@@ -43,6 +48,13 @@ namespace bt::engine
 		 * Sets the local scale of the GameObject.
 		 */
 		void SetScale(const glm::vec2& scale);
+
+		/**
+		 * Returns the model matrix of the gameObject
+		 * 
+		 * @returns The model matrix as a Matrix4x4
+		 */
+		glm::mat4 GetModelMatrix() const;
 
 	private:
 		void Update() override;

@@ -13,8 +13,6 @@
 
 namespace bt::engine
 {
-	class Component;
-
 	// GameObject ----------------------------------------------------------------
 	// ===========================================================================
 
@@ -79,6 +77,27 @@ namespace bt::engine
 			}
 
 			return false;
+		}
+
+		/**
+		 * Gets a pointer to a component of the specified type.
+		 *
+		 * @tparam T The type of component to get.
+		 * @returns A pointer to the component of the specified type, or nullptr if the entity does not have a component of that type.
+		 */
+		template<typename T>
+		T* GetComponent() const
+		{
+			static_assert(std::is_base_of_v<Component, T>, "Type T must derive from Component");
+			const uint32_t id = Family<Component>::template GetTypeId<T>();
+			auto it = m_Components.find(id);
+
+			if (it == m_Components.end())
+			{
+				return nullptr;
+			}
+
+			return reinterpret_cast<T*>(it->second.get());
 		}
 
 		/**

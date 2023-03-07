@@ -61,7 +61,7 @@ namespace bt::engine
 
 	private:
 		std::vector<std::unique_ptr<GameObject>> m_GameObjects;
-		std::queue<decltype(m_GameObjects)::iterator> m_DeadObjects;
+		std::queue<size_t> m_DeadObjectsIndices;
 	};
 }
 

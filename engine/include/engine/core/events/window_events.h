@@ -12,7 +12,7 @@ namespace bt::engine
 	{
 	public:
 		inline EventWindowClose()
-			: __EventBaseHelper {}
+			: Event(BT_ENGINE_THIS_EVENT_ID) {}
 	};
 
 	// EventWindowMove -----------------------------------------------------------
@@ -22,7 +22,7 @@ namespace bt::engine
 	{
 	public:
 		inline EventWindowMove(int32_t x, int32_t y)
-			: __EventBaseHelper, x{ x } , y{ y } {}
+			: Event(BT_ENGINE_THIS_EVENT_ID), x{ x } , y{ y } {}
 
 		int32_t x, y;
 	};
@@ -34,7 +34,7 @@ namespace bt::engine
 	{
 	public:
 		inline EventWindowSize(uint32_t width, uint32_t height)
-			: __EventBaseHelper, width{ width }, height{ height } {}
+			: Event(BT_ENGINE_THIS_EVENT_ID), width{ width }, height{ height } {}
 
 		uint32_t width, height;
 	};
@@ -46,7 +46,7 @@ namespace bt::engine
 	{
 	public:
 		inline EventWindowFocus(bool focused)
-			: __EventBaseHelper, focused{ focused } {}
+			: Event(BT_ENGINE_THIS_EVENT_ID), focused{ focused } {}
 
 		bool focused;
 	};

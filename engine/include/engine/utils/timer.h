@@ -14,7 +14,16 @@ namespace bt::engine
 		Timer();
 		~Timer() = default;
 
+		/**
+		 * Resets the timer.
+		 */
 		void Reset();
+
+		/**
+		 * Gets the elapsed time in seconds since the timer was last reset.
+		 *
+		 * @return The elapsed time in seconds.
+		 */
 		float ElapsedSeconds() const;
 
 	private:

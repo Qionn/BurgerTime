@@ -4,6 +4,8 @@
 #include "engine/core/common.h"
 #include "engine/core/event.h"
 
+#include <type_traits>
+
 namespace bt::engine
 {
 	class GameObject;
@@ -66,5 +68,8 @@ namespace bt::engine
 		GameObject* m_pOwner = nullptr;
 	};
 }
+
+#define BT_ENGINE_COMPONENT_ID(type)	bt::engine::Family<bt::engine::Component>::GetTypeId<type>()
+#define BT_ENGINE_THIS_COMPONENT_ID		BT_ENGINE_COMPONENT_ID(std::remove_reference_t<decltype(*this)>)
 
 #endif // !__BT_ENGINE_COMPONENT_H__

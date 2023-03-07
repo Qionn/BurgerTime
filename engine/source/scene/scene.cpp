@@ -2,11 +2,6 @@
 
 #include "engine/scene/scene.h"
 
-
-#include "engine/utils/timer.h"
-#include "engine/core/time.h"
-#include <sstream>
-
 namespace bt::engine
 {
 	GameObject* Scene::AddGameObject()
@@ -26,7 +21,7 @@ namespace bt::engine
 
 		if (objectIt != m_GameObjects.end())
 		{
-			m_DeadObjects.push(objectIt);
+			m_DeadObjectsIndices.push(std::distance(m_GameObjects.begin(), objectIt));
 			return true;
 		}
 
@@ -35,10 +30,10 @@ namespace bt::engine
 
 	void Scene::Update()
 	{
-		while (!m_DeadObjects.empty())
+		while (!m_DeadObjectsIndices.empty())
 		{
-			m_GameObjects.erase(m_DeadObjects.front());
-			m_DeadObjects.pop();
+			m_GameObjects.erase(m_GameObjects.begin() + m_DeadObjectsIndices.front());
+			m_DeadObjectsIndices.pop();
 		}
 
 		for (auto& pObject : m_GameObjects)

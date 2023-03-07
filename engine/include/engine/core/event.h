@@ -52,6 +52,7 @@ namespace bt::engine
 	};
 }
 
-#define __EventBaseHelper Event(Family<Event>::GetTypeId<std::remove_reference_t<decltype(*this)>>())
+#define BT_ENGINE_EVENT_ID(type)	bt::engine::Family<bt::engine::Event>::GetTypeId<type>()
+#define BT_ENGINE_THIS_EVENT_ID		BT_ENGINE_EVENT_ID(std::remove_reference_t<decltype(*this)>)
 
 #endif // !__BT_ENGINE_EVENT_H__
