@@ -1,14 +1,15 @@
 #ifndef __BT_ENGINE_STDAFX_H__
 #define __BT_ENGINE_STDAFX_H__
 
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
-#include <windows.h>
-#include <windowsx.h>
-
-#define GLEW_STATIC
-#include <GL/glew.h>
+#pragma warning(disable:4201)
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
+#include <glm/trigonometric.hpp>
+#include <glm/geometric.hpp>
+#pragma warning(default:4201)
 
 #include <stdexcept>
 #include <string>

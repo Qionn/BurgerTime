@@ -11,10 +11,10 @@ namespace bt::engine
 	class EventMouseMove final : public Event
 	{
 	public:
-		EventMouseMove(uint32_t x, uint32_t y)
+		inline EventMouseMove(float x, float y)
 			: Event(BT_ENGINE_THIS_EVENT_ID), x{ x }, y{ y } {}
 
-		uint32_t x, y;
+		float x, y;
 	};
 
 	// EventMouseScroll ----------------------------------------------------------
@@ -23,10 +23,10 @@ namespace bt::engine
 	class EventMouseScroll final : public Event
 	{
 	public:
-		EventMouseScroll(uint32_t x, uint32_t y,  float delta)
+		inline EventMouseScroll(float x, float y, float delta)
 			: Event(BT_ENGINE_THIS_EVENT_ID), x{ x }, y{ y }, delta { delta } {}
 
-		uint32_t x, y;
+		float x, y;
 		float delta;
 	};
 
@@ -36,11 +36,11 @@ namespace bt::engine
 	class EventMouseButtonDown final : public Event
 	{
 	public:
-		EventMouseButtonDown(uint32_t x, uint32_t y, uint8_t button)
+		inline EventMouseButtonDown(float x, float y, int32_t button)
 			: Event(BT_ENGINE_THIS_EVENT_ID), x{ x }, y{ y }, button{ button } {}
 
-		uint32_t x, y;
-		uint8_t button;
+		float x, y;
+		int32_t button;
 	};
 
 	// EventMouseButtonUp --------------------------------------------------------
@@ -49,11 +49,11 @@ namespace bt::engine
 	class EventMouseButtonUp final : public Event
 	{
 	public:
-		EventMouseButtonUp(uint32_t x, uint32_t y, uint8_t button)
+		inline EventMouseButtonUp(float x, float y, int32_t button)
 			: Event(BT_ENGINE_THIS_EVENT_ID), x{ x }, y{ y }, button{ button } {}
 
-		uint32_t x, y;
-		uint8_t button;
+		float x, y;
+		int32_t button;
 	};
 }
 

@@ -10,15 +10,8 @@ namespace bt
 
 	}
 
-	void Game::Load(Scene& scene)
+	void Game::Load(Scene&)
 	{
-		{
-			auto go = scene.AddGameObject();
-			go->AddComponent<SpriteComponent>();
-			
-			auto transform = go->GetComponent<TransformComponent>();
-			transform->SetScale({ 100.0f, 100.0f });
-			transform->SetPosition({ 320.0f, 180.0f });
-		}
+
 	}
 }

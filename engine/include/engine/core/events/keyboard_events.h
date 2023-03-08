@@ -11,10 +11,10 @@ namespace bt::engine
 	class EventKeyboardKeyDown final : public Event
 	{
 	public:
-		EventKeyboardKeyDown(uint8_t keycode, uint8_t scancode, bool repeated)
+		inline EventKeyboardKeyDown(int32_t keycode, int32_t scancode, bool repeated)
 			: Event(BT_ENGINE_THIS_EVENT_ID), keycode{ keycode }, scancode{ scancode }, repeated{ repeated } {}
 
-		uint8_t keycode, scancode;
+		int32_t keycode, scancode;
 		bool repeated;
 	};
 
@@ -24,10 +24,10 @@ namespace bt::engine
 	class EventKeyboardKeyUp final : public Event
 	{
 	public:
-		EventKeyboardKeyUp(uint8_t keycode, uint8_t scancode)
+		inline EventKeyboardKeyUp(int32_t keycode, int32_t scancode)
 			: Event(BT_ENGINE_THIS_EVENT_ID), keycode{ keycode }, scancode{ scancode } {}
 
-		uint8_t keycode, scancode;
+		int32_t keycode, scancode;
 	};
 
 	// EventKeyboardChar ---------------------------------------------------------
@@ -36,11 +36,10 @@ namespace bt::engine
 	class EventKeyboardChar final : public Event
 	{
 	public:
-		EventKeyboardChar(uint32_t codepoint, bool repeated)
-			: Event(BT_ENGINE_THIS_EVENT_ID), codepoint{ codepoint }, repeated{ repeated } {}
+		explicit inline EventKeyboardChar(uint32_t codepoint)
+			: Event(BT_ENGINE_THIS_EVENT_ID), codepoint{ codepoint } {}
 
 		uint32_t codepoint;
-		bool repeated;
 	};
 }
 

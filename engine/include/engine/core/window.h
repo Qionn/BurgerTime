@@ -2,7 +2,7 @@
 #define __BT_ENGINE_WINDOW_H__
 
 #include <string>
-#include <windows.h>
+#include <GLFW/glfw3.h>
 
 #include "engine/core/common.h"
 #include "engine/core/event.h"
@@ -25,7 +25,7 @@ namespace bt::engine
 		 * @param width Width in pixels
 		 * @param height Height in pixels
 		 */
-		Window(const std::string_view& title, uint32_t width, uint32_t height);
+		Window(const std::string_view& title, int32_t width, int32_t height);
 		~Window();
 
 		/**
@@ -43,17 +43,19 @@ namespace bt::engine
 		 */
 		void SwapBuffers() const;
 
+		/**
+		 * Clears the back buffer with the specified color
+		 * 
+		 * @param r The red channel
+		 * @param g The green channel
+		 * @param b The blue channel
+		 */
+		void ClearBuffers(float r, float g, float b) const;
+
 	private:
-		LRESULT HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam);
-		static LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
+		void SetupCallbacks();
 
-		std::basic_string<TCHAR> m_Title;
-		uint32_t m_Width, m_Height;
-
-		HDC m_Hdc;
-		HWND m_Hwnd;
-		HGLRC m_Context;
-		HINSTANCE m_hInstance;
+		GLFWwindow* m_pWindow = nullptr;
 	};
 }
 

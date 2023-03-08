@@ -8,6 +8,7 @@
 #include "engine/utils/family.h"
 
 #include <memory>
+#include <vector>
 #include <type_traits>
 #include <unordered_map>
 
@@ -25,7 +26,7 @@ namespace bt::engine
 		~GameObject() = default;
 
 		/**
-		 * Adds a component of type T to the game object.
+		 * Adds a component of type T to the GameObject.
 		 *
 		 * @tparam T The type of component to add.
 		 * @tparam Args The types of arguments to pass to the component's constructor.
@@ -54,7 +55,7 @@ namespace bt::engine
 		}
 
 		/**
-		 * Removes the component of type T from the game object.
+		 * Removes the component of type T from the GameObject.
 		 *
 		 * @tparam T The type of component to remove.
 		 * @returns True if the component was removed, false otherwise.
@@ -101,10 +102,10 @@ namespace bt::engine
 		}
 
 		/**
-		 * Returns true if the game object has a component of type T, false otherwise.
+		 * Returns true if the GameObject has a component of type T, false otherwise.
 		 *
 		 * @tparam T The type of component to check for.
-		 * @returns True if the game object has a component of type T, false otherwise.
+		 * @returns True if the GameObject has a component of type T, false otherwise.
 		 */
 		template<typename T>
 		bool HasComponent() const
@@ -138,6 +139,8 @@ namespace bt::engine
 
 	private:
 		std::unordered_map<uint32_t, std::unique_ptr<Component>> m_Components;
+
+		GameObject* m_pParent;
 	};
 }
 

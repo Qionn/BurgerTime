@@ -33,10 +33,10 @@ namespace bt::engine
 	class EventWindowSize final : public Event
 	{
 	public:
-		inline EventWindowSize(uint32_t width, uint32_t height)
+		inline EventWindowSize(int32_t width, int32_t height)
 			: Event(BT_ENGINE_THIS_EVENT_ID), width{ width }, height{ height } {}
 
-		uint32_t width, height;
+		int32_t width, height;
 	};
 
 	// EventWindowFocus ----------------------------------------------------------
@@ -45,7 +45,7 @@ namespace bt::engine
 	class EventWindowFocus final : public Event
 	{
 	public:
-		inline EventWindowFocus(bool focused)
+		explicit inline EventWindowFocus(bool focused)
 			: Event(BT_ENGINE_THIS_EVENT_ID), focused{ focused } {}
 
 		bool focused;

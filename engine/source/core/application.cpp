@@ -4,7 +4,6 @@
 #include "engine/core/time.h"
 #include "engine/core/events/window_events.h"
 #include "engine/utils/timer.h"
-#include "engine/utils/vault.h"
 
 namespace bt::engine
 {
@@ -45,6 +44,7 @@ namespace bt::engine
 			m_pMainScene->Render();
 
 			m_pWindow->SwapBuffers();
+			m_pWindow->ClearBuffers(0.0f, 0.0f, 0.0f);
 
 			Time::deltaTime = timer.ElapsedSeconds();
 		}

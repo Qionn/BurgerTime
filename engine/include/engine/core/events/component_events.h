@@ -16,7 +16,7 @@ namespace bt::engine
 	{
 	public:
 		template<typename T>
-		EventComponentAttach(T* pComponent)
+		inline EventComponentAttach(T* pComponent)
 			: Event(BT_ENGINE_THIS_EVENT_ID), pComponent{ pComponent }, id{Family<Component>::GetTypeId<T>()}
 		{
 			static_assert(std::is_base_of_v<Component, T>, "Type T must derive from Component");
@@ -33,7 +33,7 @@ namespace bt::engine
 	{
 	public:
 		template<typename T>
-		EventComponentDetach(T* pComponent)
+		inline EventComponentDetach(T* pComponent)
 			: Event(BT_ENGINE_THIS_EVENT_ID), pComponent{ pComponent }, id{ Family<Component>::GetTypeId<T>() }
 		{
 			static_assert(std::is_base_of_v<Component, T>, "Type T must derive from Component");
