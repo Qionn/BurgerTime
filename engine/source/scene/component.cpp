@@ -14,9 +14,4 @@ namespace bt::engine
 	{
 		return m_pOwner;
 	}
-
-	bool Component::HasOwner() const
-	{
-		return (m_pOwner != nullptr);
-	}
 }

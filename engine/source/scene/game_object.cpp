@@ -5,9 +5,15 @@
 
 namespace bt::engine
 {
-	GameObject::GameObject()
+	GameObject::GameObject(Scene* pRoot)
+		: m_pRoot{ pRoot }
 	{
 		AddComponent<TransformComponent>();
+	}
+
+	Scene* GameObject::GetRoot() const
+	{
+		return m_pRoot;
 	}
 
 	void GameObject::Update()

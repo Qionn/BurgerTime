@@ -3,11 +3,7 @@
 
 #include "engine/scene/component.h"
 
-#pragma warning(disable:4201)
-#include <glm/vec2.hpp>
-#include <glm/mat4x4.hpp>
-#include <glm/ext.hpp>
-#pragma warning(default:4201)
+#include <glm/vec3.hpp>
 
 namespace bt::engine
 {
@@ -26,35 +22,40 @@ namespace bt::engine
 		~TransformComponent() = default;
 
 		/**
-		 * Returns the local position of the GameObject.
+		 * Returns the local position.
 		 *
-		 * @returns The local position as a 2D vector
+		 * @returns The local position as a 3D vector
 		 */
-		const glm::vec2& GetPosition() const;
+		const glm::vec3& GetPosition() const;
 
 		/**
-		 * Sets the local position of the GameObject.
+		 * Sets the local position.
 		 */
-		void SetPosition(const glm::vec2& position);
+		void SetPosition(const glm::vec3& position);
 
 		/**
-		 * Returns the local scale of the GameObject.
+		 * Returns the local rotation.
 		 *
-		 * @returns The local scale as a 2D vector
+		 * @returns The local rotation as a 3D vector
 		 */
-		const glm::vec2& GetScale() const;
+		const glm::vec3& GetRotation() const;
 
 		/**
-		 * Sets the local scale of the GameObject.
+		 * Sets the local rotation.
 		 */
-		void SetScale(const glm::vec2& scale);
+		void SetRotation(const glm::vec3& rotation);
 
 		/**
-		 * Returns the model matrix of the gameObject
-		 * 
-		 * @returns The model matrix as a Matrix4x4
+		 * Returns the local scale.
+		 *
+		 * @returns The local scale as a 3D vector
 		 */
-		glm::mat4 GetModelMatrix() const;
+		const glm::vec3& GetScale() const;
+
+		/**
+		 * Sets the local scale.
+		 */
+		void SetScale(const glm::vec3& scale);
 
 	private:
 		void Update() override;
@@ -62,8 +63,9 @@ namespace bt::engine
 		void Render() const override;
 		void Process(Event& e) override;
 
-		glm::vec2 m_Position;
-		glm::vec2 m_Scale;
+		glm::vec3 m_Position;
+		glm::vec3 m_Rotation;
+		glm::vec3 m_Scale;
 	};
 }
 

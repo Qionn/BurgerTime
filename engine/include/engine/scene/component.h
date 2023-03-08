@@ -3,6 +3,7 @@
 
 #include "engine/core/common.h"
 #include "engine/core/event.h"
+#include "engine/utils/messenger.h"
 
 #include <type_traits>
 
@@ -32,13 +33,6 @@ namespace bt::engine
 		 * @return The owner GameObject, or nullptr if this component has no owner.
 		 */
 		GameObject* GetOwner() const;
-
-		/**
-		 * Checks whether this component has an owner.
-		 *
-		 * @return True if this component has an owner, false otherwise.
-		 */
-		bool HasOwner() const;
 
 		/**
 		 * Updates the component.

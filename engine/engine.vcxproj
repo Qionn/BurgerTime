@@ -270,7 +270,7 @@ xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
     <ClInclude Include="include\engine\core\window.h" />
     <ClInclude Include="include\engine\engine.h" />
     <ClInclude Include="include\engine\core\time.h" />
-    <ClInclude Include="include\engine\core\events\component_events.h" />
+    <ClInclude Include="include\engine\core\events\game_object_events.h" />
     <ClInclude Include="include\engine\core\events\keyboard_events.h" />
     <ClInclude Include="include\engine\core\events\mouse_events.h" />
     <ClInclude Include="include\engine\core\events\window_events.h" />
@@ -305,12 +305,6 @@ xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="source\utils\timer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="data\shaders\sprite.fs.glsl">
-      <FileType>Document</FileType>
-    </None>
-    <None Include="data\shaders\sprite.vs.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

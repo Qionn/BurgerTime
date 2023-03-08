@@ -7,7 +7,7 @@
 #include "core/time.h"
 #include "core/window.h"
 
-#include "core/events/component_events.h"
+#include "core/events/game_object_events.h"
 #include "core/events/window_events.h"
 #include "core/events/keyboard_events.h"
 #include "core/events/mouse_events.h"

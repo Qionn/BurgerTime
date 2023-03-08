@@ -6,7 +6,7 @@ namespace bt::engine
 {
 	GameObject* Scene::AddGameObject()
 	{
-		auto& objectIt = m_GameObjects.emplace_back(std::make_unique<GameObject>());
+		auto& objectIt = m_GameObjects.emplace_back(std::make_unique<GameObject>(this));
 		return objectIt.get();
 	}
 

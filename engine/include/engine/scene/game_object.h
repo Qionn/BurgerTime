@@ -2,18 +2,18 @@
 #define __BT_ENGINE_GAME_OBJECT_H__
 
 #include "engine/core/common.h"
-#include "engine/core/events/component_events.h"
-#include "engine/scene/component.h"
+#include "engine/core/events/game_object_events.h"
 #include "engine/scene/components/transform_component.h"
 #include "engine/utils/family.h"
 
 #include <memory>
-#include <vector>
 #include <type_traits>
 #include <unordered_map>
 
 namespace bt::engine
 {
+	class Scene;
+
 	// GameObject ----------------------------------------------------------------
 	// ===========================================================================
 
@@ -22,7 +22,7 @@ namespace bt::engine
 		BT_ENGINE_DISALLOW_COPY_AND_MOVE(GameObject)
 
 	public:
-		GameObject();
+		GameObject(Scene* pRoot);
 		~GameObject() = default;
 
 		/**
@@ -116,6 +116,13 @@ namespace bt::engine
 		}
 
 		/**
+		 * Returns a pointer to the root Scene object that contains this GameObject
+		 * 
+		 * @returns A pointer to the root Scene object.
+		 */
+		Scene* GetRoot() const;
+
+		/**
 		 * Updates all the components of the game object.
 		 */
 		void Update();
@@ -140,7 +147,7 @@ namespace bt::engine
 	private:
 		std::unordered_map<uint32_t, std::unique_ptr<Component>> m_Components;
 
-		GameObject* m_pParent;
+		Scene* m_pRoot;
 	};
 }
 

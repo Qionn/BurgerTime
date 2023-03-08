@@ -10,8 +10,8 @@ namespace bt
 
 	}
 
-	void Game::Load(Scene&)
+	void Game::Load(Scene& scene)
 	{
-
+		scene.AddGameObject();
 	}
 }
