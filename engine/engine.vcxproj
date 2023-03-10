@@ -278,6 +278,7 @@ xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
     <ClInclude Include="include\engine\scene\components\transform_component.h" />
     <ClInclude Include="include\engine\scene\game_object.h" />
     <ClInclude Include="include\engine\scene\scene.h" />
+    <ClInclude Include="include\engine\utils\dirty_cache.h" />
     <ClInclude Include="include\engine\utils\messenger.h" />
     <ClInclude Include="include\engine\utils\timer.h" />
     <ClInclude Include="include\engine\utils\family.h" />

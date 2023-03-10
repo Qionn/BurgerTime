@@ -7,6 +7,7 @@
 #include "engine/utils/family.h"
 
 #include <memory>
+#include <vector>
 #include <type_traits>
 #include <unordered_map>
 
@@ -123,7 +124,7 @@ namespace bt::engine
 		Scene* GetRoot() const;
 
 		/**
-		 * Updates all the components of the game object.
+		 * Updates all the components of the GameObject.
 		 */
 		void Update();
 
@@ -133,7 +134,7 @@ namespace bt::engine
 		void FixedUpdate();
 
 		/**
-		 * Renders all the components of the game object.
+		 * Renders all the components of the GameObject.
 		 */
 		void Render() const;
 
@@ -145,9 +146,8 @@ namespace bt::engine
 		void Process(Event& e);
 
 	private:
-		std::unordered_map<uint32_t, std::unique_ptr<Component>> m_Components;
-
 		Scene* m_pRoot;
+		std::unordered_map<uint32_t, std::unique_ptr<Component>> m_Components;
 	};
 }
 

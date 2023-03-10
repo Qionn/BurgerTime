@@ -13,13 +13,13 @@ namespace bt::engine
 	{
 		m_pWindow = std::make_unique<Window>(name, 640, 360);
 		m_pWindow->SetRecipient(std::bind(&Application::HandleEvent, this, std::placeholders::_1));
-		m_pWindow->MakeContextCurrent();
 
 		m_pMainScene = std::make_unique<Scene>();
 	}
 
 	void Application::Start()
 	{
+		m_pWindow->MakeContextCurrent();
 		Load(*m_pMainScene);
 
 		m_IsRunning = true;

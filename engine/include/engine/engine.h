@@ -18,6 +18,7 @@
 
 #include "scene/components/transform_component.h"
 
+#include "utils/dirty_cache.h"
 #include "utils/family.h"
 #include "utils/messenger.h"
 #include "utils/timer.h"

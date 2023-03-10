@@ -2,8 +2,10 @@
 #define __BT_ENGINE_TRANSFORM_COMPONENT_H__
 
 #include "engine/scene/component.h"
+#include "engine/utils/dirty_cache.h"
 
 #include <glm/vec3.hpp>
+#include <glm/mat4x4.hpp>
 
 namespace bt::engine
 {
@@ -57,6 +59,13 @@ namespace bt::engine
 		 */
 		void SetScale(const glm::vec3& scale);
 
+		/**
+		 * Returns the model matrix of this object.
+		 *
+		 * @returns The model matrix of this object as a 4x4 matrix.
+		 */
+		const glm::mat4& GetWorldMatrix() const;
+
 	private:
 		void Update() override;
 		void FixedUpdate() override;
@@ -66,6 +75,8 @@ namespace bt::engine
 		glm::vec3 m_Position;
 		glm::vec3 m_Rotation;
 		glm::vec3 m_Scale;
+
+		mutable DirtyCache<glm::mat4> m_WorldMatrixCache;
 	};
 }
 
