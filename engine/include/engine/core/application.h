@@ -18,28 +18,13 @@ namespace bt::engine
 		BT_ENGINE_DISALLOW_COPY_AND_MOVE(Application)
 
 	public:
-		/**
-		 * Creates an application
-		 * 
-		 * @param name The application name and window title
-		 */
 		Application(const std::string_view& name);
 		virtual ~Application() = default;
 
-		/**
-		 * Starts the application.
-		 */
 		void Start();
-
-		/**
-		 * Stops the application.
-		 */
 		void Stop();
 
 	protected:
-		/**
-		 * Called when the application is ready to populate the scene.
-		 */
 		virtual void Load(Scene& scene) = 0;
 
 	private:

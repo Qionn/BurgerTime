@@ -16,23 +16,11 @@ namespace bt::engine
 		BT_ENGINE_DISALLOW_IMPLICIT_CONSTRUCTOR(Family)
 
 	public:
-		/**
-		 * Returns the Id of type U in group T.
-		 * 
-		 * @tparam U The type to get the id of
-		 * @returns The id of U in group T
-		 */
 		template<typename U> static uint32_t GetTypeId()
 		{
 			static uint32_t id = s_Count++;
 			return id;
 		}
-
-		/**
-		 * Checks if the id equals to the type id of U
-		 * 
-		 * @param id The id to check
-		 */
 		template<typename U> static bool IsTypeId(uint32_t id)
 		{
 			return id == GetTypeId<U>();

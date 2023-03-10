@@ -17,20 +17,9 @@ namespace bt::engine
 		BT_ENGINE_DISALLOW_COPY_AND_MOVE(Event)
 
 	public:
-		/**
-		 * Created an empty event with an assigned id.
-		 * 
-		 * @param id The id of the event
-		 */
 		Event(uint32_t id);
 		virtual ~Event() = default;
 
-		/**
-		 * Handles the event by calling the handler when T matches the family typeid of
-		 * the event's assigned id
-		 * 
-		 * @param handler The functor to call
-		 */
 		template<typename T> void Handle(const std::function<bool(const T&)>& handler)
 		{
 			if (!m_IsHandled && Family<Event>::IsTypeId<T>(m_Id))
@@ -39,11 +28,6 @@ namespace bt::engine
 			}
 		}
 
-		/**
-		 * Returns true if the event is handled, otherwise false.
-		 * 
-		 * @returns The event handled state
-		 */
 		bool IsHandled() const;
 
 	private:

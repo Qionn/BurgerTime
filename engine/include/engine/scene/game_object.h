@@ -26,14 +26,6 @@ namespace bt::engine
 		GameObject(Scene* pRoot);
 		~GameObject() = default;
 
-		/**
-		 * Adds a component of type T to the GameObject.
-		 *
-		 * @tparam T The type of component to add.
-		 * @tparam Args The types of arguments to pass to the component's constructor.
-		 * @param args The arguments to pass to the component's constructor.
-		 * @returns A weak pointer to the added component of type T.
-		 */
 		template<typename T, typename ... Args>
 		T* AddComponent(Args&&... args)
 		{
@@ -55,12 +47,6 @@ namespace bt::engine
 			return pComponent;
 		}
 
-		/**
-		 * Removes the component of type T from the GameObject.
-		 *
-		 * @tparam T The type of component to remove.
-		 * @returns True if the component was removed, false otherwise.
-		 */
 		template<typename T>
 		bool RemoveComponent()
 		{
@@ -81,12 +67,6 @@ namespace bt::engine
 			return false;
 		}
 
-		/**
-		 * Gets a pointer to a component of the specified type.
-		 *
-		 * @tparam T The type of component to get.
-		 * @returns A pointer to the component of the specified type, or nullptr if the entity does not have a component of that type.
-		 */
 		template<typename T>
 		T* GetComponent() const
 		{
@@ -102,12 +82,6 @@ namespace bt::engine
 			return reinterpret_cast<T*>(it->second.get());
 		}
 
-		/**
-		 * Returns true if the GameObject has a component of type T, false otherwise.
-		 *
-		 * @tparam T The type of component to check for.
-		 * @returns True if the GameObject has a component of type T, false otherwise.
-		 */
 		template<typename T>
 		bool HasComponent() const
 		{
@@ -116,33 +90,11 @@ namespace bt::engine
 			return (m_Components.find(id) != m_Components.end());
 		}
 
-		/**
-		 * Returns a pointer to the root Scene object that contains this GameObject
-		 * 
-		 * @returns A pointer to the root Scene object.
-		 */
 		Scene* GetRoot() const;
 
-		/**
-		 * Updates all the components of the GameObject.
-		 */
 		void Update();
-
-		/**
-		 * Fixed update method for physics simulation.
-		 */
 		void FixedUpdate();
-
-		/**
-		 * Renders all the components of the GameObject.
-		 */
 		void Render() const;
-
-		/**
-		 * Processes an event received by the scene.
-		 *
-		 * @param e The event to process
-		 */
 		void Process(Event& e);
 
 	private:

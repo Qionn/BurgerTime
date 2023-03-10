@@ -274,6 +274,7 @@ xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
     <ClInclude Include="include\engine\core\events\keyboard_events.h" />
     <ClInclude Include="include\engine\core\events\mouse_events.h" />
     <ClInclude Include="include\engine\core\events\window_events.h" />
+    <ClInclude Include="include\engine\graphics\vertex.h" />
     <ClInclude Include="include\engine\scene\component.h" />
     <ClInclude Include="include\engine\scene\components\transform_component.h" />
     <ClInclude Include="include\engine\scene\game_object.h" />

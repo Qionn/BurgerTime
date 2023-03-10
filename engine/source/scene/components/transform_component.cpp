@@ -19,26 +19,26 @@ namespace bt::engine
 		return m_Position;
 	}
 
+	const glm::vec3& TransformComponent::GetRotation() const
+	{
+		return m_Rotation;
+	}
+
+	const glm::vec3& TransformComponent::GetScale() const
+	{
+		return m_Scale;
+	}
+
 	void TransformComponent::SetPosition(const glm::vec3& position)
 	{
 		m_Position = position;
 		m_WorldMatrixCache.SetDirty();
 	}
 
-	const glm::vec3& TransformComponent::GetRotation() const
-	{
-		return m_Rotation;
-	}
-
 	void TransformComponent::SetRotation(const glm::vec3& rotation)
 	{
 		m_Rotation = rotation;
 		m_WorldMatrixCache.SetDirty();
-	}
-
-	const glm::vec3& TransformComponent::GetScale() const
-	{
-		return m_Scale;
 	}
 
 	void TransformComponent::SetScale(const glm::vec3& scale)

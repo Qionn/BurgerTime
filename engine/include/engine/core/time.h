@@ -15,11 +15,6 @@ namespace bt::engine
 		static inline float deltaTime = 0.0f;
 		static inline constexpr float fixedDeltaTime = 1.0f / 30.0f;
 
-		/**
-		 * Returns the time in seconds from when the application started.
-		 * 
-		 * @returns Time in seconds
-		 */
 		static float GetTime();
 	};
 }

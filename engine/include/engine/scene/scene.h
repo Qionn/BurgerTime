@@ -22,41 +22,12 @@ namespace bt::engine
 		Scene() = default;
 		~Scene() = default;
 
-		/**
-		 * Creates a new game object and adds it to the scene.
-		 *
-		 * @return A pointer to the newly created game object.
-		 */
 		GameObject* AddGameObject();
-
-		/**
-		 * Removes a game object from the scene.
-		 *
-		 * @param pGameObject The game object to remove.
-		 * @return True if the game object was successfully removed, false otherwise.
-		 */
 		bool RemoveGameObject(GameObject* pGameObject);
 
-		/**
-		 * Updates all the game objects in the scene.
-		 */
 		void Update();
-
-		/**
-		 * Fixed update method for physics simulation.
-		 */
 		void FixedUpdate();
-
-		/**
-		 * Renders all the game objects in the scene.
-		 */
 		void Render() const;
-
-		/**
-		 * Processes an event received by the application.
-		 * 
-		 * @param e The event to process
-		 */
 		void Process(Event& e);
 
 	private:
