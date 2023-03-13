@@ -20,7 +20,7 @@ namespace bt::engine
 		}
 
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-		glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
+		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 		glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_TRUE);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -32,6 +32,9 @@ namespace bt::engine
 			throw std::runtime_error("Failed to create GLFW window!");
 		}
 
+		const GLFWvidmode* pMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		glfwSetWindowPos(m_pWindow, (pMode->width - width) / 2, (pMode->height - height) / 2);
+
 		glfwSetWindowUserPointer(m_pWindow, this);
 		SetupCallbacks();
 
@@ -41,6 +44,8 @@ namespace bt::engine
 			throw std::runtime_error("Failed to initialize GLAD!");
 		}
 		glfwMakeContextCurrent(nullptr);
+
+		glfwShowWindow(m_pWindow);
 	}
 
 	Window::~Window()

@@ -12,10 +12,14 @@
 #include "core/events/keyboard_events.h"
 #include "core/events/mouse_events.h"
 
+#include "graphics/mesh.h"
+#include "graphics/vertex.h"
+
 #include "scene/component.h"
 #include "scene/scene.h"
 #include "scene/game_object.h"
 
+#include "scene/components/mesh_renderer_component.h"
 #include "scene/components/transform_component.h"
 
 #include "utils/dirty_cache.h"

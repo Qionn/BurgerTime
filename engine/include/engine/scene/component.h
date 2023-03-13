@@ -10,6 +10,7 @@
 namespace bt::engine
 {
 	class GameObject;
+	class Scene;
 
 	// Component -----------------------------------------------------------------
 	// ===========================================================================
@@ -23,6 +24,7 @@ namespace bt::engine
 		virtual ~Component() = default;
 
 		GameObject* GetOwner() const;
+		Scene* GetRoot() const;
 
 		virtual void Update()			= 0;
 		virtual void FixedUpdate()		= 0;

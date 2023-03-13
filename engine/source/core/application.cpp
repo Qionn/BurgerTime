@@ -20,13 +20,13 @@ namespace bt::engine
 	void Application::Start()
 	{
 		m_pWindow->MakeContextCurrent();
-		Load(*m_pMainScene);
 
-		m_IsRunning = true;
+		Load(*m_pMainScene);
 
 		Timer timer;
 		float lag = 0.0f;
 
+		m_IsRunning = true;
 		while (m_IsRunning)
 		{
 			timer.Reset();
