@@ -2,6 +2,7 @@
 #define __BT_ENGINE_MESH_RENDERER_COMPONENT_H__
 
 #include "engine/scene/component.h"
+#include "engine/graphics/material.h"
 #include "engine/graphics/mesh.h"
 
 namespace bt::engine
@@ -12,11 +13,14 @@ namespace bt::engine
 	class MeshRendererComponent final : public Component
 	{
 	public:
-		MeshRendererComponent(GameObject* pOwner, Mesh* pMesh);
+		MeshRendererComponent(GameObject* pOwner, Mesh* pMesh, Material* pMaterial);
 		~MeshRendererComponent() = default;
 
 		void SetMesh(Mesh* pMesh);
+		void SetMaterial(Material* pMaterial);
+
 		Mesh* GetMesh() const;
+		Material* GetMaterial() const;
 
 	private:
 		void Update() override;
@@ -25,6 +29,7 @@ namespace bt::engine
 		void Process(Event& e) override;
 
 		Mesh* m_pMesh;
+		Material* m_pMaterial;
 	};
 }
 

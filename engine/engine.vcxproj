@@ -274,6 +274,7 @@ xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
     <ClInclude Include="include\engine\core\events\keyboard_events.h" />
     <ClInclude Include="include\engine\core\events\mouse_events.h" />
     <ClInclude Include="include\engine\core\events\window_events.h" />
+    <ClInclude Include="include\engine\graphics\material.h" />
     <ClInclude Include="include\engine\graphics\mesh.h" />
     <ClInclude Include="include\engine\graphics\vertex.h" />
     <ClInclude Include="include\engine\scene\component.h" />
@@ -298,9 +299,10 @@ xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
     <ClCompile Include="source\core\event.cpp" />
     <ClCompile Include="source\core\time.cpp" />
     <ClCompile Include="source\core\window.cpp" />
+    <ClCompile Include="source\graphics\material.cpp" />
     <ClCompile Include="source\graphics\mesh.cpp" />
     <ClCompile Include="source\scene\component.cpp" />
-    <ClCompile Include="source\scene\components\mesh_renderer.cpp" />
+    <ClCompile Include="source\scene\components\mesh_renderer_component.cpp" />
     <ClCompile Include="source\scene\components\transform_component.cpp" />
     <ClCompile Include="source\scene\game_object.cpp" />
     <ClCompile Include="source\scene\scene.cpp" />
@@ -311,6 +313,10 @@ xcopy /E /I /Y "$(ProjectDir)data" "$(TargetDir)data"
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="source\utils\timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\shaders\test.fs.glsl" />
+    <None Include="data\shaders\test.vs.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

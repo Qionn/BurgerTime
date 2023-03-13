@@ -4,9 +4,10 @@
 
 namespace bt::engine
 {
-	MeshRendererComponent::MeshRendererComponent(GameObject* pOwner, Mesh* pMesh)
+	MeshRendererComponent::MeshRendererComponent(GameObject* pOwner, Mesh* pMesh, Material* pMaterial)
 		: Component(pOwner)
 		, m_pMesh{ pMesh }
+		, m_pMaterial{ pMaterial }
 	{
 
 	}
@@ -16,9 +17,19 @@ namespace bt::engine
 		m_pMesh = pMesh;
 	}
 
+	void MeshRendererComponent::SetMaterial(Material* pMaterial)
+	{
+		m_pMaterial = pMaterial;
+	}
+
 	Mesh* MeshRendererComponent::GetMesh() const
 	{
 		return m_pMesh;
+	}
+
+	Material* MeshRendererComponent::GetMaterial() const
+	{
+		return m_pMaterial;
 	}
 
 	void MeshRendererComponent::Update()
@@ -33,7 +44,9 @@ namespace bt::engine
 
 	void MeshRendererComponent::Render() const
 	{
+		m_pMaterial->Bind();
 		m_pMesh->Draw();
+		m_pMaterial->Unbind();
 	}
 
 	void MeshRendererComponent::Process(Event&)

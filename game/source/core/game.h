@@ -13,6 +13,9 @@ namespace bt
 
 	private:
 		void Load(Scene& scene) override;
+
+		std::unique_ptr<Mesh> m_pMesh;
+		std::unique_ptr<Material> m_pMaterial;
 	};
 }
 

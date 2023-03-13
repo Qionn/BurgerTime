@@ -12,6 +12,7 @@
 #include "core/events/keyboard_events.h"
 #include "core/events/mouse_events.h"
 
+#include "graphics/material.h"
 #include "graphics/mesh.h"
 #include "graphics/vertex.h"
 
